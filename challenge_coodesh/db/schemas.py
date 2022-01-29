@@ -12,13 +12,13 @@ class Launches(LaunchesBase):
 
 
 class LaunchesCreate(LaunchesBase):
-    id_provider: int
+    # id_article: int
+    pass
 
 
 class EventsBase(BaseModel):
     id: str
     provider: str
-    # id_article: int
 
 
 class Events(EventsBase):
@@ -27,7 +27,8 @@ class Events(EventsBase):
 
 
 class EventsCreate(EventsBase):
-    id_provider: int
+    # id_article: int
+    pass
 
 
 class ArticlesBase(BaseModel):

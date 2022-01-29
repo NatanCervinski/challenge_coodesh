@@ -23,20 +23,20 @@ class Articles(Base):
 class Launches(Base):
     __tablename__ = "launches"
 
+    key_id = Column(Integer, primary_key=True, autoincrement=True)
     id = Column(String, primary_key=True, index=True)
     provider = Column(String)
     id_article = Column(
         Integer, ForeignKey(Articles.id), primary_key=True
     )
-    key_id = Column(Integer, primary_key=True)
 
 
 class Events(Base):
     __tablename__ = "events"
 
+    key_id = Column(Integer, primary_key=True, autoincrement=True)
     id = Column(String, primary_key=True, index=True)
     provider = Column(String)
     id_article = Column(
         Integer, ForeignKey(Articles.id), primary_key=True
     )
-    key_id = Column(Integer, primary_key=True)
