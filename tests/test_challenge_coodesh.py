@@ -55,8 +55,8 @@ def test_create_article():
         "events": [{"id": "a", "provider": "a"}],
     }
     response = client.post("/articles/", json=data)
-    print(response.json())
     assert response.status_code == 200
+    assert response.json() == data
 
 
 def test_create_article_already_exists():
@@ -75,8 +75,16 @@ def test_create_article_already_exists():
     }
     response = client.post("/articles/", json=data)
     assert response.status_code == 400
+    assert response.json() == {"detail": "Article already registered"}
 
 
 def test_delete_article():
     response = client.delete("/articles/137558")
     assert response.status_code == 200
+    assert response.json() == {"message": "Article deleted"}
+
+
+def test_delete_article_400():
+    response = client.delete("/articles/137558")
+    assert response.status_code == 400
+    assert response.json() == {"detail": "Failed to delete article"}
