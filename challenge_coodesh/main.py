@@ -44,11 +44,10 @@ def create_article(
 
 @app.delete("/articles/{id}")
 def delete_article(id: int, db: Session = Depends(get_db)):
-    crud.delete_article(db, id=id)
-    # print(a)
-
-    return {"message": "Article deleted"}
-    # except Exception as e:
-    # raise HTTPException(
-    # status_code=400, detail="Failed to delete article"
-    # )
+    delete = crud.delete_article(db, id=id)
+    if delete:
+        return {"message": "Article deleted"}
+    else:
+        raise HTTPException(
+            status_code=400, detail="Failed to delete article"
+        )
