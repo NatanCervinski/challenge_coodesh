@@ -39,3 +39,11 @@ def create_article(db: Session, articles: schemas.ArticlesCreate):
     db.commit()
     db.refresh(db_articles)
     return db_articles
+
+
+def delete_article(db: Session, id: int):
+    db.query(models.Articles).filter(models.Articles.id == id).delete()
+    db.commit()
+
+
+# print(article.id)

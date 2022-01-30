@@ -22,6 +22,14 @@ async def index():
     }
 
 
+@app.get("/articles/{id}", response_model=schemas.Articles)
+def read_article(id: int, db: Session = Depends(get_db)):
+    db_article = crud.get_article(db, id=id)
+    if db_article is None:
+        raise HTTPException(status_code=404, detail="Article not found")
+    return db_article
+
+
 @app.post("/articles/", response_model=schemas.Articles)
 def create_article(
     articles: schemas.ArticlesCreate, db: Session = Depends(get_db)
@@ -32,3 +40,15 @@ def create_article(
             status_code=400, detail="Article already registered"
         )
     return crud.create_article(db=db, articles=articles)
+
+
+@app.delete("/articles/{id}")
+def delete_article(id: int, db: Session = Depends(get_db)):
+    crud.delete_article(db, id=id)
+    # print(a)
+
+    return {"message": "Article deleted"}
+    # except Exception as e:
+    # raise HTTPException(
+    # status_code=400, detail="Failed to delete article"
+    # )

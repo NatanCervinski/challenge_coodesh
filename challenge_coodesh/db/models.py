@@ -16,8 +16,18 @@ class Articles(Base):
     publishedat = Column(String)
     title = Column(String)
     updatedat = Column(String)
-    launches = relationship("Launches", backref="article")
-    events = relationship("Events", backref="article")
+    launches = relationship(
+        "Launches",
+        # cascade="all,delete",
+        backref="launches",
+        passive_deletes=True,
+    )
+    events = relationship(
+        "Events",
+        # cascade="all,delete",
+        backref="events",
+        passive_deletes=True,
+    )
 
 
 class Launches(Base):
@@ -27,7 +37,9 @@ class Launches(Base):
     id = Column(String, primary_key=True, index=True)
     provider = Column(String)
     id_article = Column(
-        Integer, ForeignKey(Articles.id), primary_key=True
+        Integer,
+        ForeignKey(Articles.id, ondelete="CASCADE"),
+        primary_key=True,
     )
 
 
@@ -38,5 +50,7 @@ class Events(Base):
     id = Column(String, primary_key=True, index=True)
     provider = Column(String)
     id_article = Column(
-        Integer, ForeignKey(Articles.id), primary_key=True
+        Integer,
+        ForeignKey(Articles.id, ondelete="CASCADE"),
+        primary_key=True,
     )
