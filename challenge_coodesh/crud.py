@@ -29,7 +29,6 @@ def create_article(db: Session, articles: schemas.ArticlesCreate):
         db_launches = models.Launches(
             **insert_element(articles_dict["id"], i)
         )
-        print(dir(db_launches))
         db.add(db_launches)
     for i in events:
         db_events = models.Events(
@@ -51,4 +50,22 @@ def delete_article(db: Session, id: int):
     return delete
 
 
-# print(article.id)
+def update_article(db: Session, id: int, articles: schemas.Articles):
+    update = (
+        db.query(models.Articles)
+        .filter(models.Articles.id == id)
+        .update(
+            {
+                column: getattr(articles, column)
+                for column in models.Articles.__table__.columns.keys()
+            },
+            synchronize_session=False,
+        )
+    )
+
+    db.commit()
+    return (
+        db.query(models.Articles)
+        .filter(models.Articles.id == id)
+        .first()
+    )

@@ -51,3 +51,20 @@ def delete_article(id: int, db: Session = Depends(get_db)):
         raise HTTPException(
             status_code=400, detail="Failed to delete article"
         )
+
+
+@app.put("/articles/{id}", response_model=schemas.Articles)
+def update_article(
+    articles: schemas.ArticlesCreate,
+    id: int,
+    db: Session = Depends(get_db),
+):
+
+    db_article = crud.get_article(db, id=articles.id)
+
+    if not db_article:
+        raise HTTPException(
+            status_code=404, deital="Articles not found"
+        )
+    update = crud.update_article(db=db, id=id, articles=articles)
+    return update
