@@ -78,6 +78,44 @@ def test_create_article_already_exists():
     assert response.json() == {"detail": "Article already registered"}
 
 
+def test_modify_artice():
+    data = {
+        "id": 137558,
+        "url": "a",
+        "featured": True,
+        "imageurl": "a",
+        "newssite": "a",
+        "summary": "a",
+        "publishedat": "a",
+        "title": "a",
+        "updatedat": "a",
+        "launches": [{"id": "a", "provider": "a"}],
+        "events": [{"id": "a", "provider": "a"}],
+    }
+    response = client.put("/articles/137558", json=data)
+    assert response.status_code == 200
+    assert response.json() == data
+
+
+def test_modify_article_404():
+    data = {
+        "id": 37558,
+        "url": "a",
+        "featured": True,
+        "imageurl": "a",
+        "newssite": "a",
+        "summary": "a",
+        "publishedat": "a",
+        "title": "a",
+        "updatedat": "a",
+        "launches": [{"id": "a", "provider": "a"}],
+        "events": [{"id": "a", "provider": "a"}],
+    }
+    response = client.put("/articles/37558", json=data)
+    assert response.status_code == 404
+    assert response.json() == {"detail": "Article not found"}
+
+
 def test_delete_article():
     response = client.delete("/articles/137558")
     assert response.status_code == 200

@@ -63,8 +63,6 @@ def update_article(
     db_article = crud.get_article(db, id=articles.id)
 
     if not db_article:
-        raise HTTPException(
-            status_code=404, deital="Articles not found"
-        )
+        raise HTTPException(status_code=404, detail="Article not found")
     update = crud.update_article(db=db, id=id, articles=articles)
     return update
