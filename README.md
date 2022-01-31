@@ -9,6 +9,7 @@ An API RESTful project based on [Spaceflight News API].
 - [PostgreSQL](https://www.postgresql.org/)
 - [pydantic](https://pydantic-docs.helpmanual.io/)
 - [Click](https://click.palletsprojects.com/en/8.0.x/)
+- [FastAPI Pagination](https://uriyyo-fastapi-pagination.netlify.app/)
 
 ## Requeriments
 - [pip][pip-installation]
