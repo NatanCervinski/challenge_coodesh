@@ -79,6 +79,49 @@ def test_create_article_already_exists():
     assert response.json() == {"detail": "Article already registered"}
 
 
+def test_get_article():
+    response = client.get("/articles/137558")
+    assert response.status_code == 200
+    assert response.json() == {
+        "id": 137558,
+        "url": "a",
+        "featured": True,
+        "imageurl": "a",
+        "newssite": "a",
+        "summary": "a",
+        "publishedat": "a",
+        "title": "a",
+        "updatedat": "a",
+        "launches": [{"id": "a", "provider": "a"}],
+        "events": [{"id": "a", "provider": "a"}],
+    }
+
+
+def test_get_all_articles():
+    response = client.get("/articles")
+    assert response.status_code == 200
+    assert response.json() == {
+        "items": [
+            {
+                "id": 137558,
+                "featured": True,
+                "url": "a",
+                "imageurl": "a",
+                "newssite": "a",
+                "summary": "a",
+                "publishedat": "a",
+                "title": "a",
+                "updatedat": "a",
+                "launches": [{"id": "a", "provider": "a"}],
+                "events": [{"id": "a", "provider": "a"}],
+            }
+        ],
+        "total": 1,
+        "page": 1,
+        "size": 50,
+    }
+
+
 def test_modify_artice():
     data = {
         "id": 137558,
