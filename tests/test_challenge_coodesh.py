@@ -5,7 +5,8 @@ from challenge_coodesh.main import app, get_db
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-SQLALCHEMY_DATABASE_URL = "postgresql://natan:123@172.17.0.3:5432/teste"
+SQLALCHEMY_DATABASE_URL = "postgresql://vcybqugvaogrjx:d10e694d9058350d037dfbedf73a23dc36bb3fbfe79e8c5c659c203565113a8a@ec2-34-205-46-149.compute-1.amazonaws.com:5432/d5ob50q4h5et06"
+# SQLALCHEMY_DATABASE_URL="postgresql://user:password@host:port/database"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 TestingSessionLocal = sessionmaker(
