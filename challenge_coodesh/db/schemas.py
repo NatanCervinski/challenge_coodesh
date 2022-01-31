@@ -33,7 +33,7 @@ class EventsCreate(EventsBase):
 
 class ArticlesBase(BaseModel):
     id: int
-    featured: bool
+    featured: bool = False
     url: str
     imageurl: str
     newssite: str
