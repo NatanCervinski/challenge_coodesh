@@ -31,7 +31,7 @@ On insert_scipt you can run:
 $ poetry run python run.py
 ```
 ## Warning about database
-As a free database hosted on [Heroku] there is a limit of 10000 rows, so the default amount of Articles to populate the database is 1000, you can change this with the parameter "--limit" when running "run.py" (For more information, please run "poetry run python run.py --help")
+As a free database hosted on [Heroku] there is a limit of 10000 rows, so the default amount of Articles to populate the database is 1000, you can change this with the parameter "--limit" when running "run.py" (For more information, please run "poetry run python run.py --help".)
 
 ## Installing using Docker
 ```bash
