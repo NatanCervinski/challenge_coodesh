@@ -44,7 +44,7 @@ To run the tests you can just execute:
 ```bash
 $ poetry run pytest
 ```
-The tests uses another database.
+The tests use another database.
 
 
 
