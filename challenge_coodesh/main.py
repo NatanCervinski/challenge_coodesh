@@ -3,6 +3,7 @@ from challenge_coodesh.db import schemas
 from challenge_coodesh import crud
 from sqlalchemy.orm import Session
 from challenge_coodesh.db.database import SessionLocal
+from fastapi_pagination import Page, add_pagination, paginate
 
 app = FastAPI()
 
@@ -30,9 +31,20 @@ def read_article(id: int, db: Session = Depends(get_db)):
     return db_article
 
 
+@app.get("/articles/", response_model=Page[schemas.Articles])
+def all_articles(db: Session = Depends(get_db)):
+    articles = crud.get_articles(db)
+    if articles is None:
+        raise HTTPException(status_code=400, detail="No articles")
+    return paginate(articles)
+
+
+add_pagination(app)
+
+
 @app.post("/articles/", response_model=schemas.Articles)
 def create_article(
-    articles: schemas.ArticlesCreate, db: Session = Depends(get_db)
+    articles: schemas.Articles, db: Session = Depends(get_db)
 ):
     db_article = crud.get_article(db, id=articles.id)
     if db_article:
@@ -55,7 +67,7 @@ def delete_article(id: int, db: Session = Depends(get_db)):
 
 @app.put("/articles/{id}", response_model=schemas.Articles)
 def update_article(
-    articles: schemas.ArticlesCreate,
+    articles: schemas.Articles,
     id: int,
     db: Session = Depends(get_db),
 ):

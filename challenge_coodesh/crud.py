@@ -17,6 +17,11 @@ def get_article(db: Session, id: int):
     return article
 
 
+def get_articles(db: Session):
+    articles = db.query(models.Articles).all()
+    return articles
+
+
 def create_article(db: Session, articles: schemas.ArticlesCreate):
     launches = articles.launches
     events = articles.events
