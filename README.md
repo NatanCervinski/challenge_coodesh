@@ -35,7 +35,7 @@ As a free database hosted on [Heroku] there is a limit of 10000 rows, so the def
 
 ## Installing using Docker
 ```bash
-$ docker image build -t coodesh:1.0
+$ docker image build -t coodesh:1.0 .
 $ docker container run -d -p 8000:8000 coodesh:1.0
 ```
 
