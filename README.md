@@ -47,9 +47,6 @@ $ poetry run pytest
 ```
 The tests use another database.
 
-## Demo video
-
-[https://www.loom.com/share/bc43be817e38450bb3f24fab889e4ef3](https://www.loom.com/share/bc43be817e38450bb3f24fab889e4ef3)
 
 
 [Spaceflight News API]: https://api.spaceflightnewsapi.net/v3/documentation
